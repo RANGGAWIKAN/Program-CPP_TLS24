@@ -1,52 +1,33 @@
-#include <iostream>
-using namespace std;
-
-// Fungsi untuk mengkonversi Celsius ke Fahrenheit
-double celsiusToFahrenheit(double celsius) {
-    return (celsius * 9.0/5.0) + 32.0;
-}
-
-// Fungsi untuk mengkonversi Fahrenheit ke Celsius
-double fahrenheitToCelsius(double fahrenheit) {
-    return (fahrenheit - 32.0) * 5.0/9.0;
-}
+#include <cmath>    // Untuk fungsi pow()
+#include <iomanip>  // Untuk setprecision
+#include <cstdio>   // Untuk fungsi printf()
 
 int main() {
-    double suhuAwal, suhuAkhir;
-    int pilihan;
-    char lanjut;
+    double berat, tinggi, bmi;
 
-    do {
-        cout << "Program untuk Menghitung Perubahan Suhu\n";
-        cout << "Pilih jenis konversi suhu:\n";
-        cout << "1. Celsius ke Fahrenheit\n";
-        cout << "2. Fahrenheit ke Celsius\n";
-        cout << "Masukkan pilihan (1 atau 2): ";
-        cin >> pilihan;
+    // Meminta input menggunakan scanf dari library cstdio
+    printf("Masukkan berat badan Anda (kg): ");
+    scanf("%lf", &berat);
 
-        if (pilihan == 1) {
-            // Konversi dari Celsius ke Fahrenheit
-            cout << "Masukkan suhu awal dalam Celsius: ";
-            cin >> suhuAwal;
-            suhuAkhir = celsiusToFahrenheit(suhuAwal);
-            cout << "Suhu dalam Fahrenheit: " << suhuAkhir << "°F\n";
-        } else if (pilihan == 2) {
-            // Konversi dari Fahrenheit ke Celsius
-            cout << "Masukkan suhu awal dalam Fahrenheit: ";
-            cin >> suhuAwal;
-            suhuAkhir = fahrenheitToCelsius(suhuAwal);
-            cout << "Suhu dalam Celsius: " << suhuAkhir << "°C\n";
-        } else {
-            cout << "Pilihan tidak valid.\n";
-        }
+    printf("Masukkan tinggi badan Anda (meter): ");
+    scanf("%lf", &tinggi);
 
-        // Tanyakan apakah ingin input lagi
-        cout << "Apakah ingin memberikan inputan lagi? (y/n): ";
-        cin >> lanjut;
+    // Menghitung BMI
+    bmi = berat / pow(tinggi, 2);
 
-    } while (lanjut == 'y' || lanjut == 'Y');
+    // Menampilkan hasil BMI dengan dua angka di belakang koma
+    printf("BMI Anda adalah: %.2f\n", bmi);
 
-    cout << "Terima kasih telah menggunakan program ini!\n";
+    // Menampilkan kategori BMI
+    if (bmi < 18.5) {
+        printf("Anda berada dalam kategori: Berat badan kurang.\n");
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        printf("Anda berada dalam kategori: Berat badan normal.\n");
+    } else if (bmi >= 25 && bmi < 29.9) {
+        printf("Anda berada dalam kategori: Berat badan berlebih.\n");
+    } else {
+        printf("Anda berada dalam kategori: Obesitas.\n");
+    }
 
     return 0;
 }
